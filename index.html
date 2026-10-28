@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Capitanía Atlas</title>
+  <meta name="description" content="Capitanía Atlas — Servicios de Transportación Premium: Sedán & SUV en Monterrey, Nuevo León y su área metropolitana. +52 56 2333 7990." />
+  <link rel="icon" type="image/png" href="assets/ca-emblem.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Animated Transportation Background -->
+  <div class="bg-stage" aria-hidden="true">
+    <canvas id="transportation-canvas"></canvas>
+    <div class="bg-vignette"></div>
+  </div>
+
+  <!-- Minimalist Header with Official Logo & Essential Contact -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="#" class="brand-identity" aria-label="Capitanía Atlas">
+        <div class="brand-emblem">
+          <img src="assets/ca-emblem.png" alt="Logo Capitanía Atlas" class="brand-logo-img" />
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">Capitanía Atlas</span>
+          <span class="brand-kicker">Movilidad y Logística de Élite</span>
+        </div>
+      </a>
+
+      <div class="header-contact">
+        <a href="tel:+525623337990" class="contact-pill">
+          <span class="status-led"></span>
+          <span>+52 56 2333 7990</span>
+        </a>
+        <a
+          href="https://wa.me/525623337990?text=Hola%20Capitan%C3%ADa%20Atlas,%20deseo%20agendar%20un%20trayecto."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="whatsapp-pill"
+        >
+          <span>WhatsApp Directo</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Interactive Content -->
+  <main class="main-content">
+    <!-- Compact Hero Identity -->
+    <section class="hero-compact">
+      <div class="hero-emblem-wrap" id="open-ca-card-btn" role="button" tabindex="0" title="Ver insignia oficial Capitanía Atlas">
+        <img src="assets/ca-emblem.png" alt="Emblema Capitanía Atlas" class="hero-emblem-img" />
+      </div>
+      <h1 class="hero-title">Capitanía Atlas</h1>
+      <p class="hero-subtitle">Servicios de Transportación Premium: Sedán &amp; SUV</p>
+    </section>
+
+    <!-- Interactive Vehicle Selection (Sedán & SUV) -->
+    <section class="fleet-section" aria-label="Selección de automóvil">
+      <div class="fleet-grid">
+        <!-- Option 1: Sedán -->
+        <article
+          class="vehicle-card"
+          id="card-sedan"
+          data-vehicle-id="sedan"
+          data-vehicle-name="Sedán"
+          data-vehicle-passengers="Hasta 4 usuarios"
+          tabindex="0"
+          role="button"
+          aria-pressed="false"
+          aria-label="Elegir Sedán — Ocupación de hasta 4 usuarios"
+        >
+          <div class="card-glow-backdrop"></div>
+          <div class="card-hud-brackets">
+            <span class="bracket tl"></span>
+            <span class="bracket tr"></span>
+            <span class="bracket bl"></span>
+            <span class="bracket br"></span>
+          </div>
+
+          <div class="vehicle-visual-frame">
+            <div class="visual-scanline"></div>
+            <img
+              src="assets/mg5-gris.png"
+              alt="Sedán"
+              class="vehicle-image"
+            />
+            <button
+              type="button"
+              class="inspect-image-btn"
+              data-inspect="sedan"
+              aria-label="Ampliar imagen de Sedán"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="15 3 21 3 21 9" />
+                <polyline points="9 21 3 21 3 15" />
+                <line x1="21" y1="3" x2="14" y2="10" />
+                <line x1="3" y1="21" x2="10" y2="14" />
+              </svg>
+            </button>
+          </div>
+
+          <div class="vehicle-card-body">
+            <div class="vehicle-header-row">
+              <h2 class="vehicle-name">Sedán</h2>
+              <div class="vehicle-badges-group">
+                <span class="capacity-badge">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                  Hasta 4 usuarios
+                </span>
+              </div>
+            </div>
+
+            <div class="card-action-area">
+              <button type="button" class="select-vehicle-btn" data-select-btn="sedan">
+                Elegir Sedán
+              </button>
+
+              <!-- Revealed immediately when Sedán is selected -->
+              <div class="schedule-action-reveal" aria-hidden="true">
+                <button type="button" class="agendar-trayecto-btn" data-schedule-vehicle="sedan">
+                  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <path d="M12 2L19 21L12 17L5 21L12 2Z" />
+                  </svg>
+                  <span>Agendar Trayecto</span>
+                </button>
+
+                <div class="direct-engines-row">
+                  <button type="button" class="engine-chip-btn engine-gmaps" data-open-engine="gmaps" data-unit="sedan">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
+                    <span>Google Maps</span>
+                  </button>
+                  <button type="button" class="engine-chip-btn engine-waze" data-open-engine="waze" data-unit="sedan">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polygon points="3 11 22 2 13 21 11 13 3 11" />
+                    </svg>
+                    <span>Waze</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Option 2: SUV -->
+        <article
+          class="vehicle-card"
+          id="card-suv"
+          data-vehicle-id="suv"
+          data-vehicle-name="SUV"
+          data-vehicle-passengers="Hasta 4 usuarios"
+          tabindex="0"
+          role="button"
+          aria-pressed="false"
+          aria-label="Elegir SUV — Ocupación de hasta 4 usuarios"
+        >
+          <div class="card-glow-backdrop"></div>
+          <div class="card-hud-brackets">
+            <span class="bracket tl"></span>
+            <span class="bracket tr"></span>
+            <span class="bracket bl"></span>
+            <span class="bracket br"></span>
+          </div>
+
+          <div class="vehicle-visual-frame">
+            <div class="visual-scanline"></div>
+            <img
+              src="assets/vw-atlas-negra.png"
+              alt="SUV"
+              class="vehicle-image"
+            />
+            <button
+              type="button"
+              class="inspect-image-btn"
+              data-inspect="suv"
+              aria-label="Ampliar imagen de SUV"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="15 3 21 3 21 9" />
+                <polyline points="9 21 3 21 3 15" />
+                <line x1="21" y1="3" x2="14" y2="10" />
+                <line x1="3" y1="21" x2="10" y2="14" />
+              </svg>
+            </button>
+          </div>
+
+          <div class="vehicle-card-body">
+            <div class="vehicle-header-row">
+              <h2 class="vehicle-name">SUV</h2>
+              <div class="vehicle-badges-group">
+                <span class="capacity-badge">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                  Hasta 4 usuarios
+                </span>
+              </div>
+            </div>
+
+            <div class="card-action-area">
+              <button type="button" class="select-vehicle-btn" data-select-btn="suv">
+                Elegir SUV
+              </button>
+
+              <!-- Revealed immediately when SUV is selected -->
+              <div class="schedule-action-reveal" aria-hidden="true">
+                <button type="button" class="agendar-trayecto-btn" data-schedule-vehicle="suv">
+                  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <path d="M12 2L19 21L12 17L5 21L12 2Z" />
+                  </svg>
+                  <span>Agendar Trayecto</span>
+                </button>
+
+                <div class="direct-engines-row">
+                  <button type="button" class="engine-chip-btn engine-gmaps" data-open-engine="gmaps" data-unit="suv">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
+                    <span>Google Maps</span>
+                  </button>
+                  <button type="button" class="engine-chip-btn engine-waze" data-open-engine="waze" data-unit="suv">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polygon points="3 11 22 2 13 21 11 13 3 11" />
+                    </svg>
+                    <span>Waze</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- In-Page Trajectory, Map & Scheduling Section (Visualized directly on the same page) -->
+    <section class="inpage-booking-section" id="seccion-mapa-trayecto" aria-label="Mapa de trayectoria y agendamiento">
+      <div class="inpage-booking-card">
+        <div class="inpage-booking-header">
+          <div class="inpage-header-left">
+            <img src="assets/ca-emblem.png" alt="Logo Capitanía Atlas" class="modal-brand-logo" />
+            <div>
+              <span class="modal-kicker">MONTERREY, NUEVO LEÓN Y ÁREA METROPOLITANA</span>
+              <h2 class="inpage-section-title">Agendar Trayecto — <span id="modal-selected-unit">Sedán</span></h2>
+            </div>
+          </div>
+
+          <div class="unit-toggle-row inpage-unit-switcher">
+            <button type="button" class="unit-pill-btn active" data-switch-unit="sedan">Sedán (Hasta 4 usuarios)</button>
+            <button type="button" class="unit-pill-btn" data-switch-unit="suv">SUV (Hasta 4 usuarios)</button>
+          </div>
+        </div>
+
+        <div class="inpage-booking-grid">
+          <!-- Left Column: Form Controls, Date/Time Dropdowns & Fare Calculation -->
+          <div class="inpage-controls-col">
+            <form id="booking-form" class="booking-form" autocomplete="off">
+              <!-- Empty Origin Box with Monterrey & Metropolitan Area Address Autocomplete -->
+              <div class="form-field address-autocomplete-field">
+                <div class="field-label-row">
+                  <label for="origin-input">Origen</label>
+                  <button type="button" class="gps-locate-btn" id="use-gps-btn" title="Obtener mi ubicación actual por GPS">
+                    📍 Usar mi GPS
+                  </button>
+                </div>
+                <input
+                  type="text"
+                  id="origin-input"
+                  value=""
+                  placeholder="Dirección de origen en Monterrey y Área Metropolitana"
+                  required
+                />
+                <ul class="address-suggestions" id="origin-suggestions" role="listbox" hidden></ul>
+              </div>
+
+              <!-- Empty Destination Box with Monterrey & Metropolitan Area Address Autocomplete -->
+              <div class="form-field address-autocomplete-field">
+                <label for="destination-input">Destino</label>
+                <input
+                  type="text"
+                  id="destination-input"
+                  value=""
+                  placeholder="Dirección de destino en Monterrey y Área Metropolitana"
+                  required
+                />
+                <ul class="address-suggestions" id="destination-suggestions" role="listbox" hidden></ul>
+              </div>
+
+              <!-- Date & Time Dropdowns WITHOUT statements/labels above them -->
+              <div class="form-row-split">
+                <!-- Interactive Date Field (Inline Calendar on Hover) -->
+                <div class="form-field date-hover-box" id="date-hover-box">
+                  <div class="date-box-inner">
+                    <div class="date-input-trigger">
+                      <span class="calendar-icon">📅</span>
+                      <input
+                        type="text"
+                        id="pickup-date-display"
+                        readonly
+                        placeholder="Fecha"
+                        aria-label="Fecha"
+                        aria-haspopup="grid"
+                        aria-expanded="false"
+                      />
+                      <span class="time-chevron">▾</span>
+                      <input type="hidden" id="pickup-date" required />
+                    </div>
+
+                    <div class="inline-calendar-panel" id="inline-calendar-panel" aria-label="Calendario">
+                      <div class="cal-header">
+                        <button type="button" class="cal-nav-btn" id="cal-prev-month" aria-label="Mes anterior">‹</button>
+                        <strong class="cal-month-title" id="cal-month-title">Octubre 2026</strong>
+                        <button type="button" class="cal-nav-btn" id="cal-next-month" aria-label="Mes siguiente">›</button>
+                      </div>
+                      <div class="cal-weekdays">
+                        <span>LU</span>
+                        <span>MA</span>
+                        <span>MI</span>
+                        <span>JU</span>
+                        <span>VI</span>
+                        <span>SA</span>
+                        <span>DO</span>
+                      </div>
+                      <div class="cal-days-grid" id="cal-days-grid" role="grid"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Interactive Time Field (Inline Schedule Dropdown on Hover) -->
+                <div class="form-field time-hover-box" id="time-hover-box">
+                  <div class="time-box-inner">
+                    <div class="time-input-trigger">
+                      <span class="clock-icon">🕒</span>
+                      <input
+                        type="text"
+                        id="pickup-time-display"
+                        readonly
+                        value="20:00 hrs (08:00 PM)"
+                        placeholder="Hora"
+                        aria-label="Hora"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                      />
+                      <span class="time-chevron">▾</span>
+                      <input type="hidden" id="pickup-time" value="20:00" required />
+                    </div>
+
+                    <div class="inline-time-panel" id="inline-time-panel" aria-label="Horarios">
+                      <div class="time-slots-grid" id="time-slots-grid" role="listbox"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Live Distance & Total Price Box (No per-km rate shown) -->
+              <div class="fare-calculator-box" aria-live="polite">
+                <div class="fare-calc-top">
+                  <div class="fare-metric">
+                    <span class="fare-label">DISTANCIA ESTIMADA</span>
+                    <strong class="fare-distance-val" id="calc-distance-display">0.0 km</strong>
+                    <small class="route-calc-status" id="route-calc-status">Mapa en Monterrey, Nuevo León</small>
+                  </div>
+
+                  <div class="fare-metric fare-total-metric">
+                    <span class="fare-label">PRECIO ESTIMADO DEL VIAJE</span>
+                    <strong class="fare-total-val" id="calc-total-display">$0.00 MXN</strong>
+                    <small id="calc-unit-type-label">Unidad: Sedán</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal-submit-actions">
+                <button type="submit" class="agendar-trayecto-btn">
+                  <span id="submit-btn-label">Confirmar y Agendar Trayecto</span>
+                </button>
+              </div>
+            </form>
+
+            <!-- In-Page Confirmation View -->
+            <div class="booking-confirmed-view" id="booking-confirmed-view" hidden>
+              <div class="confirmed-badge">✓ TRAYECTO AGENDADO EN SISTEMA</div>
+              <div class="confirmed-price-highlight">
+                <span class="confirmed-price-kicker">PRECIO TOTAL DEL VIAJE</span>
+                <strong class="confirmed-price-value" id="confirmed-price-value">$0.00 MXN</strong>
+                <small id="confirmed-price-breakdown">Distancia calculada en ruta</small>
+              </div>
+              <p id="confirmed-summary-text"></p>
+              <div class="confirmed-contact-actions">
+                <a
+                  href="#"
+                  id="confirmed-wa-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="agendar-trayecto-btn"
+                >
+                  <span>Confirmar por WhatsApp (+52 56 2333 7990)</span>
+                </a>
+                <button type="button" class="secondary-btn" id="reset-booking-btn">Editar Trayecto</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: In-Page Map Viewer (Google Maps & Waze Integrated Inside the Page) -->
+          <div class="inpage-map-col">
+            <div class="map-engine-toolbar">
+              <span class="map-toolbar-title">MAPA EN TIEMPO REAL · MONTERREY, N.L.</span>
+              <div class="map-engine-tabs" role="tablist" aria-label="Motor de mapa en página">
+                <button
+                  type="button"
+                  class="map-engine-tab active"
+                  id="tab-engine-gmaps"
+                  data-map-engine="gmaps"
+                  role="tab"
+                  aria-selected="true"
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                  <span>Google Maps</span>
+                </button>
+                <button
+                  type="button"
+                  class="map-engine-tab"
+                  id="tab-engine-waze"
+                  data-map-engine="waze"
+                  role="tab"
+                  aria-selected="false"
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="3 11 22 2 13 21 11 13 3 11" />
+                  </svg>
+                  <span>Waze Live</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="inpage-map-stage">
+              <iframe
+                id="gmaps-embed-frame"
+                title="Mapa interactivo Monterrey, Nuevo León y Área Metropolitana"
+                src="https://maps.google.com/maps?q=Monterrey,+Nuevo+Leon,+Mexico&hl=es&z=12&output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Essential Communication Bar -->
+    <section class="communication-strip" aria-label="Contacto directo Capitanía Atlas">
+      <div class="comm-card">
+        <img src="assets/ca-card.png" alt="Credencial Oficial Capitanía Atlas" class="comm-crest-img" id="comm-card-preview" />
+        <div class="comm-info">
+          <span class="comm-kicker">MOVILIDAD Y LOGÍSTICA DE ÉLITE</span>
+          <a href="tel:+525623337990" class="comm-phone">+52 56 2333 7990</a>
+          <span class="comm-sub">Servicios de Transportación Premium: Sedán &amp; SUV</span>
+        </div>
+        <div class="comm-actions">
+          <a href="tel:+525623337990" class="comm-btn comm-btn-call">Llamar</a>
+          <a
+            href="https://wa.me/525623337990?text=Hola%20Capitan%C3%ADa%20Atlas,%20solicito%20informaci%C3%B3n%20de%20traslado."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="comm-btn comm-btn-wa"
+          >
+            WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Lightbox Modal for Image Inspection -->
+  <div class="modal-backdrop" id="inspect-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="inspect-modal-card">
+      <button type="button" class="modal-close-btn" id="close-inspect-modal" aria-label="Cerrar">✕</button>
+      <div class="inspect-image-container">
+        <img src="assets/mg5-gris.png" alt="Vista ampliada" id="inspect-modal-img" />
+      </div>
+      <div class="inspect-modal-footer">
+        <div class="inspect-footer-info">
+          <h3 id="inspect-modal-title">Sedán</h3>
+          <span id="inspect-modal-cap">Hasta 4 usuarios</span>
+        </div>
+        <button type="button" class="agendar-trayecto-btn inspect-cta" id="inspect-modal-select-btn">
+          <span>Agendar Trayecto</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

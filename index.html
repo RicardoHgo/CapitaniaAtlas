@@ -270,35 +270,97 @@
           <!-- Left Column: Form Controls, Date/Time Dropdowns & Fare Calculation -->
           <div class="inpage-controls-col">
             <form id="booking-form" class="booking-form" autocomplete="off">
-              <!-- Empty Origin Box with Monterrey & Metropolitan Area Address Autocomplete -->
-              <div class="form-field address-autocomplete-field">
-                <div class="field-label-row">
-                  <label for="origin-input">Origen</label>
-                  <button type="button" class="gps-locate-btn" id="use-gps-btn" title="Obtener mi ubicación actual por GPS">
-                    📍 Usar mi GPS
+              <!-- Google Maps & Waze Style Origin / Destination Route Planner -->
+              <div class="route-planner-box">
+                <div class="route-timeline-rail" aria-hidden="true">
+                  <span class="rail-dot rail-origin"></span>
+                  <span class="rail-connector"></span>
+                  <span class="rail-dot rail-dest"></span>
+                </div>
+
+                <div class="route-inputs-stack">
+                  <!-- Empty Origin Box with Google Maps / Waze Autocomplete -->
+                  <div class="form-field address-autocomplete-field" id="origin-field">
+                    <div class="field-label-row">
+                      <div class="label-with-badge">
+                        <label for="origin-input">Origen</label>
+                        <span class="endpoint-status-pill" id="origin-status-pill" hidden>✓ Ubicado</span>
+                      </div>
+                      <button type="button" class="gps-locate-btn" id="use-gps-btn" title="Obtener mi ubicación actual por GPS">
+                        📍 Mi ubicación
+                      </button>
+                    </div>
+                    <div class="input-control-wrap">
+                      <input
+                        type="text"
+                        id="origin-input"
+                        value=""
+                        placeholder="¿Dónde te recogemos? Ej. Aeropuerto, San Pedro, Av..."
+                        aria-autocomplete="list"
+                        aria-controls="origin-suggestions"
+                        aria-expanded="false"
+                        required
+                      />
+                      <button type="button" class="field-clear-btn" id="clear-origin-btn" aria-label="Limpiar origen" hidden>
+                        ✕
+                      </button>
+                    </div>
+                    <div class="address-suggestions-wrap" id="origin-suggestions-wrap" hidden>
+                      <div class="suggestions-engine-header">
+                        <span class="suggestions-engine-label">GOOGLE MAPS · WAZE · MONTERREY Z.M.</span>
+                        <span class="suggestions-sync-dot" id="origin-sync-indicator" hidden></span>
+                      </div>
+                      <ul class="address-suggestions" id="origin-suggestions" role="listbox"></ul>
+                    </div>
+                  </div>
+
+                  <!-- Empty Destination Box with Google Maps / Waze Autocomplete -->
+                  <div class="form-field address-autocomplete-field" id="dest-field">
+                    <div class="field-label-row">
+                      <div class="label-with-badge">
+                        <label for="destination-input">Destino</label>
+                        <span class="endpoint-status-pill" id="dest-status-pill" hidden>✓ Ubicado</span>
+                      </div>
+                    </div>
+                    <div class="input-control-wrap">
+                      <input
+                        type="text"
+                        id="destination-input"
+                        value=""
+                        placeholder="¿A dónde te diriges? Ej. Galerías, Fashion Drive, Tec..."
+                        aria-autocomplete="list"
+                        aria-controls="destination-suggestions"
+                        aria-expanded="false"
+                        required
+                      />
+                      <button type="button" class="field-clear-btn" id="clear-dest-btn" aria-label="Limpiar destino" hidden>
+                        ✕
+                      </button>
+                    </div>
+                    <div class="address-suggestions-wrap" id="destination-suggestions-wrap" hidden>
+                      <div class="suggestions-engine-header">
+                        <span class="suggestions-engine-label">SUGERENCIAS DE DESTINO · MAPS &amp; WAZE</span>
+                        <span class="suggestions-sync-dot" id="dest-sync-indicator" hidden></span>
+                      </div>
+                      <ul class="address-suggestions" id="destination-suggestions" role="listbox"></ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="route-swap-col">
+                  <button
+                    type="button"
+                    class="swap-route-btn"
+                    id="swap-route-btn"
+                    title="Intercambiar origen y destino"
+                    aria-label="Intercambiar origen y destino"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                      <path d="M7 16V4M7 4L3 8M7 4L11 8" />
+                      <path d="M17 8V20M17 20L21 16M17 20L13 16" />
+                    </svg>
                   </button>
                 </div>
-                <input
-                  type="text"
-                  id="origin-input"
-                  value=""
-                  placeholder="Dirección de origen en Monterrey y Área Metropolitana"
-                  required
-                />
-                <ul class="address-suggestions" id="origin-suggestions" role="listbox" hidden></ul>
-              </div>
-
-              <!-- Empty Destination Box with Monterrey & Metropolitan Area Address Autocomplete -->
-              <div class="form-field address-autocomplete-field">
-                <label for="destination-input">Destino</label>
-                <input
-                  type="text"
-                  id="destination-input"
-                  value=""
-                  placeholder="Dirección de destino en Monterrey y Área Metropolitana"
-                  required
-                />
-                <ul class="address-suggestions" id="destination-suggestions" role="listbox" hidden></ul>
               </div>
 
               <!-- Date & Time Dropdowns WITHOUT statements/labels above them -->
@@ -367,17 +429,17 @@
                 </div>
               </div>
 
-              <!-- Live Distance & Total Price Box (No per-km rate shown) -->
-              <div class="fare-calculator-box" aria-live="polite">
+              <!-- Live Distance & One-Shot Total Price Box (No per-km rate shown) -->
+              <div class="fare-calculator-box" id="fare-calculator-box" aria-live="polite">
                 <div class="fare-calc-top">
                   <div class="fare-metric">
-                    <span class="fare-label">DISTANCIA ESTIMADA</span>
+                    <span class="fare-label">DISTANCIA DE RUTA</span>
                     <strong class="fare-distance-val" id="calc-distance-display">0.0 km</strong>
                     <small class="route-calc-status" id="route-calc-status">Mapa en Monterrey, Nuevo León</small>
                   </div>
 
                   <div class="fare-metric fare-total-metric">
-                    <span class="fare-label">PRECIO ESTIMADO DEL VIAJE</span>
+                    <span class="fare-label">MONTO TOTAL DEL VIAJE</span>
                     <strong class="fare-total-val" id="calc-total-display">$0.00 MXN</strong>
                     <small id="calc-unit-type-label">Unidad: Sedán</small>
                   </div>
@@ -418,7 +480,13 @@
           <!-- Right Column: In-Page Map Viewer (Google Maps & Waze Integrated Inside the Page) -->
           <div class="inpage-map-col">
             <div class="map-engine-toolbar">
-              <span class="map-toolbar-title">MAPA EN TIEMPO REAL · MONTERREY, N.L.</span>
+              <div class="map-toolbar-meta">
+                <span class="map-toolbar-title">MAPA EN TIEMPO REAL · MONTERREY, N.L.</span>
+                <div class="waze-pin-switcher" id="waze-pin-switcher" hidden>
+                  <button type="button" class="waze-pin-btn active" data-waze-focus="dest">Pin Destino</button>
+                  <button type="button" class="waze-pin-btn" data-waze-focus="origin">Pin Origen</button>
+                </div>
+              </div>
               <div class="map-engine-tabs" role="tablist" aria-label="Motor de mapa en página">
                 <button
                   type="button"
